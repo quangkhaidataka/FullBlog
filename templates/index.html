@@ -1,0 +1,56 @@
+{% include "header.html" %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('https://scontent.fsgn5-11.fna.fbcdn.net/v/t39.30808-6/243156840_258628192732273_824162178457406718_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=e3f864&_nc_ohc=BAKeFS6XgrwAX-diCtS&_nc_ht=scontent.fsgn5-11.fna&oh=00_AT8JhhMYSOu0ZBGKK7JiBqXZu8O1XTqFtZl9uVW47q0rbA&oe=61F1A9CF')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>IU FINTECH</h1>
+            <span class="subheading">A collection of random musings.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {% for post in all_posts %}
+        <div class="post-preview">
+          <a href="{{ url_for('show_post', post_id=post.id) }}">
+            <h2 class="post-title">
+              {{post.title}}
+            </h2>
+            <h3 class="post-subtitle">
+              {{post.subtitle}}
+            </h3>
+          </a>
+          <p class="post-meta">Posted by
+            <a href="#">{{post.author.name}}</a>
+            on {{post.date}}
+            {% if current_user.id==1: %}
+            <a href="{{url_for('delete_post', post_id=post.id) }}">✘</a>
+            {% endif %}
+          
+          </p>
+        </div>
+        <hr>
+        {% endfor %}
+
+
+        <!-- New Post -->
+        {% if current_user.id==1: %}
+        <div class="clearfix">
+          <a class="btn btn-primary float-right" href="{{url_for('add_new_post')}}">Create New Post</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <hr>
+
+{% include "footer.html" %}
