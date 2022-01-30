@@ -1,4 +1,6 @@
 {% include "header.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
 
   <!-- Page Header -->
   <header class="masthead" style="background-image: url({{ url_for('static', filename='img/about-bg.jpg')}})">
@@ -7,8 +9,8 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="page-heading">
-            <h1>About Me</h1>
-            <span class="subheading">This is what I do.</span>
+            <h1>About Us</h1>
+            <span class="subheading">This is what we do.</span>
           </div>
         </div>
       </div>
@@ -16,16 +18,28 @@
   </header>
 
   <!-- Main Content -->
+<!--<div class="about-img">-->
+<!--<img  src="https://scontent.fsgn5-11.fna.fbcdn.net/v/t39.30808-6/242905925_258627576065668_5325279283987867_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=64kcF-p1lx4AX8HtFQ3&_nc_oc=AQmUMOdMfZFxz9019GzUUC0KiPen73EqQrbJ2GL7gGB29nwLU_zBzFL-J0L55Ltammo&_nc_ht=scontent.fsgn5-11.fna&oh=00_AT9Hm6_WMH2aPA72LLHG1-Sxg8Y9lYX6QAhpPVCa-lCPrw&oe=61FA24DB">-->
+<!--</div>-->
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>
+        <img class="about-img" src="https://scontent.fsgn5-11.fna.fbcdn.net/v/t39.30808-6/242905925_258627576065668_5325279283987867_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=64kcF-p1lx4AX8HtFQ3&_nc_oc=AQmUMOdMfZFxz9019GzUUC0KiPen73EqQrbJ2GL7gGB29nwLU_zBzFL-J0L55Ltammo&_nc_ht=scontent.fsgn5-11.fna&oh=00_AT9Hm6_WMH2aPA72LLHG1-Sxg8Y9lYX6QAhpPVCa-lCPrw&oe=61FA24DB">
+
+        {{ content|safe }}
+<!--        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>-->
+<!--        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>-->
+<!--        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>-->
       </div>
     </div>
   </div>
 
   <hr>
+
+{% if current_user.id==1: %}
+  <div class="clearfix">
+  <a class="btn btn-primary float-right" href="{{url_for('editabout')}}">Edit About</a>
+  </div>
+  {% endif %}
 
   {% include "footer.html" %}

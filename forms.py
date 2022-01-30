@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField
+from wtforms import StringField, SubmitField, PasswordField,IntegerField
 from wtforms.validators import DataRequired, URL
 from flask_ckeditor import CKEditorField
 
@@ -9,7 +9,16 @@ class CreatePostForm(FlaskForm):
     subtitle = StringField("Subtitle", validators=[DataRequired()])
     img_url = StringField("Blog Image URL", validators=[DataRequired(), URL()])
     body = CKEditorField("Blog Content", validators=[DataRequired()])
+    category_id = IntegerField("Category ID", validators=[DataRequired()])
     submit = SubmitField("Submit Post")
+
+
+class CreateActivityForm(FlaskForm):
+    title = StringField("Activity Title", validators=[DataRequired()])
+    summary = StringField("Summary", validators=[DataRequired()])
+    img_url = StringField("Activity Image URL", validators=[DataRequired(), URL()])
+    body = CKEditorField("Activity Content", validators=[DataRequired()])
+    submit = SubmitField("Submit")
 
 class RegisterForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired()])
@@ -25,6 +34,11 @@ class LoginForm(FlaskForm):
 class CommentForm(FlaskForm):
     body = CKEditorField("Comment", validators=[DataRequired()])
     submit = SubmitField("Submit Comment")
+
+class AboutForm(FlaskForm):
+    body = CKEditorField("About", validators=[DataRequired()])
+    submit = SubmitField("Submit Comment")
+
 
 
 

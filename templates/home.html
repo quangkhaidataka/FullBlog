@@ -1,0 +1,100 @@
+{% include "header.html" %}
+
+ <!-- Page Header -->
+  <header class="masthead" style="background-image: url('https://scontent.fsgn5-11.fna.fbcdn.net/v/t39.30808-6/p180x540/243156840_258628192732273_824162178457406718_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=e3f864&_nc_ohc=SN0AR8MN9_AAX_4iaDi&_nc_ht=scontent.fsgn5-11.fna&oh=00_AT8A8ZDc_PYbYpZQLE69M9t6sSXcCAhNdYKy83zrUmxYIw&oe=61F6D9B3')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1 style="text-shadow: 0 0 2px #fff; color: #FFF8F3;" >IU FINTECH</h1>
+            <span class="subheading">Đối với tôi, cái lớn nhất là Tổ Quốc, là lý tưởng mà tôi đeo đuổi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+<div class="container">
+    <div class="card-deck mb-3 text-center">
+        {% for cat in cats%}
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{{cat.name}}</h4>
+          </div>
+        <img  src="{{ cat.img_url }}" class="card-img-top imgcat" alt="...">
+
+          <div class="card-body">
+            <p>{{ cat.summary }}</p>
+            <a href="{{ url_for('show_category',cat_id=cat.id)}}"><button type="button" class="btn btn-sm btn-block btn-outline-primary">Get Started</button></a>
+          </div>
+        </div>
+        {% endfor %}
+
+<!--        <div class="card mb-4 box-shadow">-->
+<!--          <div class="card-header">-->
+<!--            <h4 class="my-0 font-weight-normal">Quantitative Finance</h4>-->
+<!--          </div>-->
+<!--        <img src="{{ url_for('static', filename='img/Quant.png')}}" class="card-img-top imgcat" alt="...">-->
+
+<!--          <div class="card-body">-->
+<!--            <p>Giving you many projects and articles related to Quantitative Finace</p>-->
+<!--            <button type="button" class="btn btn-sm btn-block btn-outline-primary"> Get Started </button>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="card mb-4 box-shadow">-->
+<!--          <div class="card-header">-->
+<!--            <h4 class="my-0 font-weight-normal">Academics</h4>-->
+<!--          </div>-->
+<!--        <img src="{{ url_for('static', filename='img/Aca.png')}}" class="card-img-top imgcat" alt="...">-->
+<!--          <div class="card-body">-->
+<!--            <p>Provide slides,exames and exercises related to applied mathematics </p>-->
+<!--            <button type="button" class="btn btn-sm btn-block btn-outline-primary"> Get Started </button>-->
+<!--          </div>-->
+<!--        </div>-->
+
+      </div>
+
+</div>
+<hr>
+<div class="news-head">
+<!--    <h1> HOẠT ĐỘNG CỦA IU FINTECH </h1><a href="url_for('get_all_activities')"></a>-->
+    <h1><a href="{{url_for('get_all_activities')}}">HOẠT ĐỘNG CỦA IU FINTECH</a></h1>
+</div>
+<div class="container news-box">
+
+    {% for activity in activities %}
+    <div class="card mb-3" style="max-width: 100%;">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="{{activity.img_url}}" class="card-img imgnews" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><a href="{{url_for('show_activitiy',act_id=activity.id)}}">{{activity.title}}</a></h5>
+            <p class="card-text">{{ activity.summary }}</p>
+            <p class="card-text"><small class="text-muted">{{activity.date}}</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+<!--    <div class="card mb-3" style="max-width: 100%;">-->
+<!--      <div class="row no-gutters">-->
+<!--        <div class="col-md-4">-->
+<!--          <img src="https://vieclamit24h.net/ckfinder/userfiles/images/Data-Science.jpg" class="card-img imgnews" alt="...">-->
+<!--        </div>-->
+<!--        <div class="col-md-8">-->
+<!--          <div class="card-body">-->
+<!--            <h5 class="card-title">Seminar học toán tài chính để làm gì?</h5>-->
+<!--            <p class="card-text">Giúp cho các bạn hiểu hơn về toán ứng dụng cũng như cơ hội việc làm trong tương lai</p>-->
+<!--            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+</div>
+{% include "footer.html" %}

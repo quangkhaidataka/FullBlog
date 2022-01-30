@@ -1,4 +1,5 @@
 {% include "header.html" %}
+
   <!-- Page Header -->
   <header class="masthead" style="background-image: url('https://scontent.fsgn5-11.fna.fbcdn.net/v/t39.30808-6/p180x540/243156840_258628192732273_824162178457406718_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=e3f864&_nc_ohc=SN0AR8MN9_AAX_4iaDi&_nc_ht=scontent.fsgn5-11.fna&oh=00_AT8A8ZDc_PYbYpZQLE69M9t6sSXcCAhNdYKy83zrUmxYIw&oe=61F6D9B3')">
     <div class="overlay"></div>
@@ -14,80 +15,48 @@
     </div>
   </header>
 
-  {% include "search.html" %}
+<div class="news-head">
+<!--    <h1> HOẠT ĐỘNG CỦA IU FINTECH </h1><a href="url_for('get_all_activities')"></a>-->
+    <h1><a href="{{url_for('get_all_activities')}}">HOẠT ĐỘNG CỦA IU FINTECH</a></h1>
+</div>
 
+{% include "search.html" %}
 
-  <!-- Main Content -->
-<!--  <div class="container">-->
-<!--    <div class="row">-->
-<!--      <div class="col-lg-8 col-md-10 mx-auto">-->
-<!--        {% for post in all_posts %}-->
-<!--        <div class="post-preview">-->
-<!--          <a href="{{ url_for('show_post', post_id=post.id) }}">-->
-<!--            <h2 class="post-title">-->
-<!--              {{post.title}}-->
-<!--            </h2>-->
-<!--            <h3 class="post-subtitle">-->
-<!--              {{post.subtitle}}-->
-<!--            </h3>-->
-<!--          </a>-->
-<!--          <p class="post-meta">Posted by-->
-<!--            <a href="#">{{post.author.name}}</a>-->
-<!--            on {{post.date}}-->
-<!--            {% if current_user.id==1: %}-->
-<!--            <a href="{{url_for('delete_post', post_id=post.id) }}">✘</a>-->
-<!--            {% endif %}-->
-<!--          -->
-<!--          </p>-->
-<!--        </div>-->
-<!--        <hr>-->
-<!--        {% endfor %}-->
-
-
-<!--        &lt;!&ndash; New Post &ndash;&gt;-->
-<!--        {% if current_user.id==1: %}-->
-<!--        <div class="clearfix">-->
-<!--          <a class="btn btn-primary float-right" href="{{url_for('add_new_post')}}">Create New Post</a>-->
-<!--        </div>-->
-<!--        {% endif %}-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
 <div class="container news-box">
-    {% for post in pages.items %}
+    {% for act in pages.items %}
     <div class="card mb-3" style="max-width: 100%;">
-      <a class="posthref" href="{{ url_for('show_post', post_id=post.id) }}">
       <div class="row no-gutters">
         <div class="col-md-4">
-          <img src="{{post.img_url}}" class="card-img imgnews" alt="...">
+          <img src="{{act.img_url}}" class="card-img imgnews" alt="...">
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title">{{post.title}}</h5>
-            <p class="card-text">{{post.subtitle}}</p>
-            <p class="card-text"><small class="text-muted">{{post.date}}</small></p>
+            <h5 class="card-title"><a href="{{url_for('show_activitiy',act_id=act.id)}}">{{act.title}}</a></h5>
+            <p class="card-text">{{act.summary}}
+
+            </p>
+            <p class="card-text"><small class="text-muted">{{act.date}}</small>
+            </p>
           </div>
         </div>
       </div>
-         {% if current_user.id==1: %}
-              <a href="{{url_for('delete_post', post_id=post.id) }}">✘</a>
+      {% if current_user.id==1: %}
+      <a href="{{url_for('delete_act', act_id=act.id) }}">✘</a>
         {% endif %}
     </div>
     {% endfor %}
 
 <div>
-
   {% if current_user.id==1: %}
     <div class="clearfix">
-      <a class="btn btn-primary float-right" href="{{url_for('add_new_post')}}">Create New Post</a>
+      <a class="btn btn-primary float-right" href="{{url_for('add_new_activity')}}">Create New Activity</a>
     </div>
     {% endif %}
   <hr>
 
-
 <!-- Pagination Links-->
 <div class="text-right">
-    <a href="{{ url_for('get_all_posts', page=pages.prev_num) }}"
+    <a href="{{ url_for('get_all_activities', page=pages.prev_num) }}"
        class="btn btn-outline-dark
        {% if pages.page == 1 %}disabled{% endif %}">
         &laquo;
@@ -97,12 +66,12 @@
 {% if page_num %}
 <!-- Check for the active page and set the link to "Active"-->
             {% if pages.page == page_num %}
-            <a href="{{ url_for('get_all_posts', page=page_num) }}"
+            <a href="{{ url_for('get_all_activities', page=page_num) }}"
                class="btn btn-dark">
                 {{ page_num }}
             </a>
             {% else %}
-            <a href="{{ url_for('get_all_posts', page=page_num) }}"
+            <a href="{{ url_for('get_all_activities', page=page_num) }}"
                class="btn btn-outline-dark">
                 {{ page_num }}
             </a>
@@ -111,7 +80,7 @@
             ...
         {% endif %}
     {% endfor %}
-    <a href="{{ url_for('get_all_posts', page=pages.next_num) }}"
+    <a href="{{ url_for('get_all_activities', page=pages.next_num) }}"
        class="btn btn-outline-dark
        {% if pages.page == pages.pages %}disabled{% endif %}">
         &raquo;
@@ -120,5 +89,6 @@
 <p class="text-right mt-3">
    Showing page {{ pages.page }} of {{ pages.pages }}
 </p>
+
 
 {% include "footer.html" %}

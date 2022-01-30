@@ -7,6 +7,7 @@
 body {
   font-size: 20px;
   color: #212529;
+  background-color: #24A19C ;
   font-family: 'Lora', 'Times New Roman', serif;
 }
 
@@ -16,8 +17,9 @@ p {
 }
 
 p a {
-  text-decoration: underline;
+  text-decoration: none;
 }
+
 
 h1,
 h2,
@@ -483,3 +485,4 @@ footer .copyright {
   font-size: 16px;
   padding: 25px 35px;
 }
+
