@@ -129,7 +129,7 @@ class Activities(db.Model):
 
 
 
-#db.create_all()
+db.create_all()
 
 ##################### Search Function ##############################
 @app.route('/search',methods=['GET','POST'])
